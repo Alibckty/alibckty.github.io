@@ -10,6 +10,7 @@
 
   gtag('config', 'G-VSMF2XPXTD');
 </script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ali Bocakkıtay</title>
@@ -147,7 +148,6 @@
     <a href="#">Yazılar</a>
     <a href="#">Projeler</a>
     <a href="#">İletişim</a>
-    <a href="#" onclick="toggleMaintenance()">🛠 Bakım</a>
 </nav>
 
 <main>
@@ -233,15 +233,29 @@ I wish you enjoyable reading.
     © 2026 Ali Bocakkıtay
 </footer>
 
-<!-- JS -->
+<!-- JS: BAKIM MODU (GITHUB KONTROLLÜ) -->
 <script>
-let maintenance = false;
+async function checkMaintenance() {
+    try {
+        const res = await fetch("maintenance.json?cache=" + Date.now());
+        const data = await res.json();
 
-function toggleMaintenance() {
-    maintenance = !maintenance;
-    document.getElementById("maintenance").style.display =
-        maintenance ? "flex" : "none";
+        if (data.maintenance === true) {
+            document.getElementById("maintenance").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        } else {
+            document.getElementById("maintenance").style.display = "none";
+        }
+    } catch (e) {
+        console.log("Maintenance check failed:", e);
+    }
 }
+
+// ilk açılışta kontrol et
+checkMaintenance();
+
+// 30 saniyede bir kontrol et
+setInterval(checkMaintenance, 30000);
 </script>
 
 </body>
