@@ -295,6 +295,8 @@ function sendComment(){
 
 // Yorumları yükle
 async function loadComments(){
+    const ADMIN_MODE = new URLSearchParams(window.location.search).get("admin") === "1";
+
     const res = await fetch(FIREBASE_URL);
     const data = await res.json();
 
@@ -305,11 +307,13 @@ async function loadComments(){
         const c = data[key];
 
         const div = document.createElement("div");
-        div.className="comment";
+        div.className = "comment";
 
-        div.innerHTML =
-            "<b>"+c.name+"</b><br>"+c.comment+
-            "<br><button onclick=\"deleteComment('"+key+"')\">Sil</button>";
+        div.innerHTML = "<b>"+c.name+"</b><br>"+c.comment;
+
+        if(ADMIN_MODE){
+            div.innerHTML += "<br><button onclick=\"deleteComment('"+key+"')\">Sil</button>";
+        }
 
         box.prepend(div);
     }
