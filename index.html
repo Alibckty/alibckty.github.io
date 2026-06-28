@@ -294,7 +294,7 @@ function sendComment(){
 
 // yorumları yükle
 async function loadComments(){
-    const ADMIN = true;
+    const ADMIN = false;
 
     const res = await fetch(FIREBASE_URL);
     const data = await res.json();
