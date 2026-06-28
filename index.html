@@ -271,6 +271,9 @@ setInterval(checkMaintenance,30000);
 // 🔥 FIREBASE (SENİN GERÇEK LINKİN)
 const FIREBASE_URL = "https://yorum-sistem-default-rtdb.europe-west1.firebasedatabase.app/comments.json";
 
+// ⭐ ADMIN MOD (URL'den kontrol)
+const ADMIN_MODE = new URLSearchParams(window.location.search).get("admin") === "1";
+
 // Yorum gönder
 function sendComment(){
     const name = document.getElementById("name").value;
@@ -295,8 +298,6 @@ function sendComment(){
 
 // Yorumları yükle
 async function loadComments(){
-    const ADMIN_MODE = new URLSearchParams(window.location.search).get("admin") === "1";
-
     const res = await fetch(FIREBASE_URL);
     const data = await res.json();
 
