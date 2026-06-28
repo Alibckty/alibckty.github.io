@@ -103,7 +103,6 @@
         color: #64748b;
     }
 
-    /* BAKIM MODU */
     #maintenance {
         display:none;
         position:fixed;
@@ -119,27 +118,60 @@
         flex-direction:column;
         text-align:center;
     }
+
+    /* COMMENTS */
+    .comment-box{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-bottom:20px;
+    }
+
+    .comment-box input,
+    .comment-box textarea{
+        padding:10px;
+        border-radius:8px;
+        border:none;
+        outline:none;
+    }
+
+    .comment-box button{
+        padding:10px;
+        border:none;
+        border-radius:8px;
+        background:#38bdf8;
+        color:#0f172a;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .comment{
+        background:#1f2937;
+        padding:10px;
+        border-radius:8px;
+        margin-bottom:10px;
+    }
+
+    .comment b{
+        color:#38bdf8;
+    }
 </style>
 
 </head>
 
 <body>
 
-<!-- BAKIM MODU EKRANI -->
 <div id="maintenance">
     <h1>🔧 Site Bakımda</h1>
     <p>Şu anda güncelleme yapıyoruz. Lütfen sonra tekrar gel.</p>
 </div>
 
 <header class="hero">
-
     <div class="hero-text">
         <h1>Ali Bocakkıtay</h1>
         <p>Kişisel web sitem | Yazılar, projeler ve düşünceler</p>
     </div>
-
-    <img src="profil.jpg" alt="Ali Bocakkıtay" class="profile-photo">
-
+    <img src="profil.jpg" class="profile-photo">
 </header>
 
 <nav>
@@ -153,109 +185,105 @@
 <main>
 
 <section>
-   <h2>Hakkımda</h2>
+<h2>Hakkımda</h2>
+<p>Merhaba, ben Ali Bocakkıtay...</p>
+</section>
 
+<section>
+<h2>Projeler</h2>
+<p>Henüz proje paylaşılmadı.</p>
+</section>
+
+<section>
+<h2>Son Yazı</h2>
+<p>En son paylaşımlar...</p>
+</section>
+
+<section>
+<h2>Yazılarım</h2>
 <p>
-Merhaba, ben Ali Bocakkıtay. Selçuk Üniversitesi Tıp Fakültesi öğrencisiyim.
-Kişisel web sitemde kendi çalışmalarımı, düşüncelerimi ve yazılarımı paylaşıyorum.
-Keyifli okumalar dilerim.
-📈🎯
-</p>
-
-<hr>
-
-<p>
-Hello, I am Ali Bocakkıtay. I am a student at Selçuk University Faculty of Medicine.
-On my personal website, I share my personal works, thoughts, and writings.
-I wish you enjoyable reading.
-📈🎯
+<a href="yazilar/...pdf" target="_blank">PDF</a>
 </p>
 </section>
 
-<section>
-    <h2>Projeler</h2>
-
-    <p>
-        Henüz proje paylaşılmadı.  
-        Yakında tıp alanında yaptığım çalışmalarım burada olacak.
-    </p>
-</section>
-
-<section>
-    <h2>Son Yazı</h2>
-
-    <p>
-        En son paylaştığım çalışmalarıma aşağıdan ulaşabilirsiniz.  
-        Yeni içerikler yakında eklenecektir.
-    </p>
-</section>
-    
-<section>
-    <h2>Yazılarım</h2>
-
-    <p>
-        <a href="yazilar/The Relationship Between Short Video-Based Social Media Use, Dopamine Signaling, and Depressive Symptoms.pdf" target="_blank">
-            📄 The Relationship Between Short Video-Based Social Media Use, Dopamine Signaling, and Depressive Symptoms Read PDF
-        </a>
-    </p>
-
-    <p>
-        <a href="yazilar/The Relationship Between Short Video-Based Social Media Use, Dopamine Signaling, and Depressive Symptoms.pdf" download>
-            ⬇️ The Relationship Between Short Video-Based Social Media Use, Dopamine Signaling, and Depressive Symptoms Download PDF
-        </a>
-    </p>
-</section>
-
+<!-- 🔥 YORUMLAR (FIREBASE) -->
 <section>
     <h2>Yorumlar</h2>
 
-    <script src="https://giscus.app/client.js"
-        data-repo="Alibckty/alibckty.github.io"
-        data-repo-id="R_kgDOTG0dVg"
-        data-category="General"
-        data-category-id="DIC_kwDOTG0dVs4DAFFD"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark"
-        data-lang="tr"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-    </script>
+    <div class="comment-box">
+        <input id="name" placeholder="Adın">
+        <textarea id="comment" placeholder="Yorumun"></textarea>
+        <button onclick="sendComment()">Gönder</button>
+    </div>
+
+    <div id="comments"></div>
 </section>
 
 </main>
 
 <footer>
-    © 2026 Ali Bocakkıtay
+© 2026 Ali Bocakkıtay
 </footer>
 
-<!-- JS: BAKIM MODU (GITHUB KONTROLLÜ) -->
 <script>
-async function checkMaintenance() {
-    try {
-        const res = await fetch("maintenance.json?cache=" + Date.now());
+// BAKIM
+async function checkMaintenance(){
+    try{
+        const res = await fetch("maintenance.json?cache="+Date.now());
         const data = await res.json();
 
-        if (data.maintenance === true) {
-            document.getElementById("maintenance").style.display = "flex";
-            document.body.style.overflow = "hidden";
-        } else {
-            document.getElementById("maintenance").style.display = "none";
-        }
-    } catch (e) {
-        console.log("Maintenance check failed:", e);
+        document.getElementById("maintenance").style.display =
+            data.maintenance ? "flex" : "none";
+
+    }catch(e){}
+}
+checkMaintenance();
+setInterval(checkMaintenance,30000);
+
+
+// 🔥 FIREBASE AYAR
+const FIREBASE_URL = "YOUR_FIREBASE_URL/comments.json";
+
+// Yorum gönder
+function sendComment(){
+    const name = document.getElementById("name").value;
+    const comment = document.getElementById("comment").value;
+
+    if(!name || !comment) return;
+
+    fetch(FIREBASE_URL, {
+        method:"POST",
+        body: JSON.stringify({
+            name:name,
+            comment:comment,
+            time: Date.now()
+        })
+    });
+
+    document.getElementById("name").value="";
+    document.getElementById("comment").value="";
+
+    loadComments();
+}
+
+// Yorumları yükle
+async function loadComments(){
+    const res = await fetch(FIREBASE_URL);
+    const data = await res.json();
+
+    const box = document.getElementById("comments");
+    box.innerHTML = "";
+
+    for(let key in data){
+        const c = data[key];
+        const div = document.createElement("div");
+        div.className="comment";
+        div.innerHTML = "<b>"+c.name+"</b><br>"+c.comment;
+        box.prepend(div);
     }
 }
 
-// ilk açılışta kontrol et
-checkMaintenance();
-
-// 30 saniyede bir kontrol et
-setInterval(checkMaintenance, 30000);
+loadComments();
 </script>
 
 </body>
