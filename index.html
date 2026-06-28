@@ -303,11 +303,23 @@ async function loadComments(){
 
     for(let key in data){
         const c = data[key];
+
         const div = document.createElement("div");
         div.className="comment";
-        div.innerHTML = "<b>"+c.name+"</b><br>"+c.comment;
+
+        div.innerHTML =
+            "<b>"+c.name+"</b><br>"+c.comment+
+            "<br><button onclick=\"deleteComment('"+key+"')\">Sil</button>";
+
         box.prepend(div);
     }
+}
+
+// 🔥 YORUM SİL
+function deleteComment(key){
+    fetch(FIREBASE_URL.replace(".json","") + "/" + key + ".json", {
+        method: "DELETE"
+    }).then(() => loadComments());
 }
 
 loadComments();
