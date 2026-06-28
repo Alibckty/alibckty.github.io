@@ -294,7 +294,7 @@ function sendComment(){
 
 // yorumları yükle
 async function loadComments(){
-    const ADMIN = new URLSearchParams(window.location.search).get("admin") === "1";
+    const ADMIN = true;
 
     const res = await fetch(FIREBASE_URL);
     const data = await res.json();
