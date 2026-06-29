@@ -358,9 +358,6 @@ function sendComment(){
     document.getElementById("name").value = "";
     document.getElementById("comment").value = "";
 
-function toggleMenu(){
-    document.getElementById("navMenu").classList.toggle("active");
-}
 
 loadComments();
 }
@@ -400,6 +397,10 @@ function deleteComment(key){
 
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll("nav a");
+
+function toggleMenu(){
+    document.getElementById("navMenu").classList.toggle("active");
+}
 
 function setActiveMenu() {
     let current = "";
