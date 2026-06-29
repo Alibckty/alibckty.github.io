@@ -86,9 +86,15 @@ html{
     }
 
     nav a:hover {
-        color: #38bdf8;
-    }
+    color: #38bdf8;
+}
 
+nav a.active {
+    color: #38bdf8;
+    font-weight: bold;
+    border-bottom: 2px solid #38bdf8;
+    padding-bottom: 2px;
+}
     main {
         max-width: 900px;
         margin: 40px auto;
@@ -358,7 +364,30 @@ function deleteComment(key){
     }).then(loadComments);
 }
 
-loadComments();
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (scrollY >= (sectionTop - sectionHeight / 3)) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+    });
+});
+
+loadComments();    
 
 </script>
 
