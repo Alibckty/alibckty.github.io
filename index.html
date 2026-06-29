@@ -16,6 +16,11 @@
 <title>Ali Bocakkıtay</title>
 
 <style>
+
+html{
+    scroll-behavior:smooth;
+}
+
     body {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -165,7 +170,7 @@
     <p>Şu anda güncelleme yapıyoruz. Lütfen sonra tekrar gel.</p>
 </div>
 
-<header class="hero">
+<header class="hero" id="anasayfa">
     <div class="hero-text">
         <h1>Ali Bocakkıtay</h1>
         <p>Kişisel web sitem | Yazılar, projeler ve düşünceler</p>
@@ -174,16 +179,15 @@
 </header>
 
 <nav>
-    <a href="#">Ana Sayfa</a>
-    <a href="#">Hakkımda</a>
-    <a href="#">Yazılar</a>
-    <a href="#">Projeler</a>
-    <a href="#">İletişim</a>
+    <a href="#anasayfa">Ana Sayfa</a>
+    <a href="#hakkimda">Hakkımda</a>
+    <a href="#yazilar">Yazılar</a>
+    <a href="#projeler">Projeler</a>
+    <a href="#iletisim">İletişim</a>
 </nav>
-
 <main>
 
-<section>
+<section id="hakkimda">
 <h2>Hakkımda</h2>
 <p>
 Merhaba, ben Ali Bocakkıtay. Selçuk Üniversitesi Tıp Fakültesi öğrencisiyim.
@@ -202,7 +206,7 @@ I wish you enjoyable reading.
 </p>
 </section>
 
-<section>
+<section id="projeler">
 <h2>Projeler</h2>
 <p>
 Henüz proje paylaşılmadı.   
@@ -218,7 +222,7 @@ Yeni içerikler yakında eklenecektir.
 </p>
 </section>
 
-<section>
+<section id="yazilar">
 <h2>Yazılarım</h2>
 <p>
 <a href="yazilar/The Relationship Between Short Video-Based Social Media Use, Dopamine Signaling, and Depressive Symptoms.pdf" target="_blank">
@@ -243,6 +247,31 @@ Yeni içerikler yakında eklenecektir.
     </div>
 
     <div id="comments"></div>
+</section>
+
+<section id="iletisim">
+
+<hr style="border:1px solid #2d3748; margin:20px 0;">
+
+<h2>İletişim</h2>
+
+<p>
+Benimle iletişime geçmek için aşağıdaki e-posta adresini kullanabilirsiniz.  
+Sorular, öneriler veya iş birlikleri için ulaşabilirsiniz.
+</p>
+
+<div style="background:#1f2937; padding:15px; border-radius:10px; margin-top:15px;">
+    <p style="margin:0; font-size:18px;">
+        📧 <a href="mailto:bcktyali1212@gmail.com" style="color:#38bdf8; text-decoration:none;">
+        bcktyali1212@gmail.com
+        </a>
+    </p>
+</div>
+
+<p style="margin-top:15px; color:#94a3b8;">
+En kısa sürede dönüş yapmaya çalışırım.
+</p>
+
 </section>
 
 </main>
