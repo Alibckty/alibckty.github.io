@@ -369,28 +369,29 @@ function deleteComment(key){
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll("nav a");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute("id");
+function setActiveMenu() {
+    let current = "";
 
-            navLinks.forEach(link => {
-                link.classList.remove("active");
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
 
-                if (link.getAttribute("href") === "#" + id) {
-                    link.classList.add("active");
-                }
-            });
+        // ekranın ortasına en yakın bölüm
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            current = section.id;
         }
     });
-}, {
-    threshold: 0.5,
-    rootMargin: "-20% 0px -60% 0px"
-});
 
-sections.forEach(section => {
-    observer.observe(section);
-});
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", setActiveMenu);
+window.addEventListener("load", setActiveMenu);
 loadComments();    
 
 </script>
