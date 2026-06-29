@@ -369,26 +369,31 @@ function deleteComment(key){
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav a");
 
-window.addEventListener("scroll", () => {
-    let current = "";
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
 
-       if (scrollY >= sectionTop - 150) {
-    current = section.getAttribute("id");
-}
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + id) {
+                    link.classList.add("active");
+                }
+            });
         }
     });
+}, {
+    threshold: 0.6
 });
 
+sections.forEach(section => {
+    if(section.id){
+        observer.observe(section);
+    }
+});
 loadComments();    
 
 </script>
