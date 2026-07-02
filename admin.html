@@ -76,50 +76,48 @@ async function loadData(){
         }
     }
 
+    // 🔥 array'e çevir
+    let sortedArticles = [];
+
+    for(let id in articleMap){
+        sortedArticles.push({
+            id,
+            total: articleMap[id].total,
+            count: articleMap[id].count
+        });
+    }
+
+    // 🔥 sırala (yüksek → düşük)
+    sortedArticles.sort((a,b) => b.total - a.total);
+
+    // 🔥 ekrana bas
     const container = document.getElementById("articles");
     container.innerHTML = "";
 
- let sortedArticles = [];
+    sortedArticles.forEach((a, index) => {
 
-// 1) array'e çevir
-for(let id in articleMap){
-    sortedArticles.push({
-        id: id,
-        total: articleMap[id].total,
-        count: articleMap[id].count
+        const div = document.createElement("div");
+        div.className = "card";
+
+        div.innerHTML = `
+            <b>#${index+1} ${a.id}</b><br>
+            📥 Toplam Oy: ${a.count}<br>
+            ⭐ Toplam Yıldız: ${a.total}
+        `;
+
+        container.appendChild(div);
     });
-}
 
-// 2) sırala (yüksek → düşük)
-sortedArticles.sort((a,b) => b.total - a.total);
+    // 🏆 en iyi makale
+    if(sortedArticles.length > 0){
+        const best = sortedArticles[0];
 
-// 3) ekrana bas
-const container = document.getElementById("articles");
-container.innerHTML = "";
-
-sortedArticles.forEach((a, index) => {
-
-    const div = document.createElement("div");
-    div.className = "card";
-
-    div.innerHTML = `
-        <b>#${index+1} ${a.id}</b><br>
-        📥 Toplam Oy: ${a.count}<br>
-        ⭐ Toplam Yıldız: ${a.total}
-    `;
-
-    container.appendChild(div);
-});
-
-// 4) en iyi makale
-const best = sortedArticles[0];
-
-document.getElementById("best").innerText =
-    "🏆 En İyi Makale: " + best.id + " (" + best.total + " ⭐)";
+        document.getElementById("best").innerText =
+            "🏆 En İyi Makale: " + best.id + " (" + best.total + " ⭐)";
+    } else {
+        document.getElementById("best").innerText =
+            "🏆 En İyi Makale: Yok";
     }
-
-    document.getElementById("best").innerText =
-        "🏆 En İyi Makale: " + bestId + " (" + bestAvg.toFixed(2) + ")";
 }
 
 loadData();
