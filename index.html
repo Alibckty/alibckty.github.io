@@ -517,15 +517,16 @@ async function rate(article, stars) {
 
     // Firebase'e kaydet
     await fetch(url, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            rating: stars,
-            time: Date.now()
-        })
-    });
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        article: article,
+        rating: stars,
+        time: Date.now()
+    })
+});
 
     // Görünümü güncelle
     const box = document.querySelector(`[data-article="${article}"]`);
