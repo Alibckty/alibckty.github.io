@@ -66,7 +66,30 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-    // BURAYA KENDİ FIREBASE CONFIG'İNİ KOYACAĞIZ
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBXuNbsz3W26q1EueNLWhSIUKS4SIViw4k",
+    authDomain: "yorum-sistemimm.firebaseapp.com",
+    databaseURL: "https://yorum-sistemimm-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "yorum-sistemimm",
+    storageBucket: "yorum-sistemimm.firebasestorage.app",
+    messagingSenderId: "1048692198462",
+    appId: "1:1048692198462:web:59fcfb7f0a29723d68156f",
+    measurementId: "G-R637BK9WRN"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 };
 
 const app = initializeApp(firebaseConfig);
