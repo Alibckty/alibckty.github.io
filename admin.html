@@ -89,8 +89,7 @@ async function loadData(){
     let bestAvg = 0;
 
     for(let id in articleMap){
-        let a = articleMap[id].total / articleMap[id].count;
-
+        let a = articleMap[id].count === 0 ? 0 : articleMap[id].total / articleMap[id].count;
         if(a > bestAvg){
             bestAvg = a;
             bestId = id;
