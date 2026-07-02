@@ -375,7 +375,8 @@ setInterval(checkMaintenance,30000);
 
 
 const FIREBASE_URL = "https://yorum-sistemimm-default-rtdb.europe-west1.firebasedatabase.app//comments.json";
-
+const RATING_URL = "https://yorum-sistemimm-default-rtdb.europe-west1.firebasedatabase.app/ratings";
+    
 // Her ziyaretçiye tek seferlik kimlik oluştur
 let userId = localStorage.getItem("ratingUserId");
 
@@ -470,6 +471,33 @@ function setActiveMenu() {
 
 window.addEventListener("scroll", setActiveMenu);
 window.addEventListener("load", setActiveMenu);
+async function rate(article, stars){
+
+    const url = `${RATING_URL}/${article}/${userId}.json`;
+
+    // Daha önce oy vermiş mi?
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if(data){
+        alert("Bu makaleye daha önce oy verdiniz.");
+        return;
+    }
+
+    // Oyu kaydet
+    await fetch(url,{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            rating:stars,
+            time:Date.now()
+        })
+    });
+
+    alert("⭐ Teşekkür ederiz! Oyunuz kaydedildi.");
+}
 loadComments();    
 
 </script>
