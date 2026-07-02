@@ -45,9 +45,9 @@ const firebaseConfig = {
     appId: "XXX"
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-// 🔥 Realtime DB
+// 🔥 Realtime Database
 const RATING_URL = "https://yorum-sistemimm-default-rtdb.europe-west1.firebasedatabase.app/ratings.json";
 
 async function loadData(){
@@ -55,14 +55,21 @@ async function loadData(){
     const res = await fetch(RATING_URL);
     const data = await res.json();
 
+    if(!data){
+        document.getElementById("articles").innerHTML = "<div class='card'>Hiç veri yok</div>";
+        return;
+    }
+
     let articleMap = {};
 
-    // verileri grupla
+    // 🔥 verileri grupla
     for(let key in data){
         const item = data[key];
 
-        const stars = item.rating;
-        const articleId = item.article;
+        if(!item) continue;
+
+        const stars = item.rating || 0;
+        const articleId = item.article || "unknown";
 
         if(!articleMap[articleId]){
             articleMap[articleId] = {total:0, count:0};
@@ -72,14 +79,19 @@ async function loadData(){
         articleMap[articleId].count++;
     }
 
-    // 📊 makale makale gösterim
     const container = document.getElementById("articles");
     container.innerHTML = "";
 
     let bestId = "";
     let bestAvg = 0;
 
-    for(let id in articleMap){
+    // 🔥 SIRALA (en iyi üstte)
+    const sorted = Object.keys(articleMap).sort((a,b)=>{
+        return (articleMap[b].total / articleMap[b].count) -
+               (articleMap[a].total / articleMap[a].count);
+    });
+
+    for(let id of sorted){
 
         let totalStars = articleMap[id].total;
         let count = articleMap[id].count;
@@ -89,7 +101,7 @@ async function loadData(){
         div.className = "card";
 
         div.innerHTML = `
-            <b>${id}</b><br>
+            <b>📄 ${id}</b><br>
             📥 Toplam Oy: ${count}<br>
             ⭐ Toplam Yıldız: ${totalStars}<br>
             📊 Ortalama: ${avg.toFixed(2)}
@@ -103,7 +115,6 @@ async function loadData(){
         }
     }
 
-    // 🏆 en iyi makale
     document.getElementById("best").innerText =
         "🏆 En İyi Makale: " + bestId + " (" + bestAvg.toFixed(2) + ")";
 }
