@@ -351,6 +351,14 @@ setInterval(checkMaintenance,30000);
 
 const FIREBASE_URL = "https://yorum-sistemimm-default-rtdb.europe-west1.firebasedatabase.app//comments.json";
 
+// Her ziyaretçiye tek seferlik kimlik oluştur
+let userId = localStorage.getItem("ratingUserId");
+
+if (!userId) {
+    userId = crypto.randomUUID();
+    localStorage.setItem("ratingUserId", userId);
+}
+
 // yorum gönder
 function sendComment(){
     const name = document.getElementById("name").value;
