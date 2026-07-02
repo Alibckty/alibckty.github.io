@@ -35,7 +35,6 @@ h2{color:#38bdf8;}
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "XXX",
@@ -47,22 +46,26 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+
+// 🔥 SADECE BURASI DEĞİŞTİ (Firestore SİLİNDİ)
+
+const RATING_URL = "https://yorum-sistemimm-default-rtdb.europe-west1.firebasedatabase.app/ratings.json";
 
 async function loadData(){
 
-    const snapshot = await getDocs(collection(db,"ratings"));
+    const res = await fetch(RATING_URL);
+    const data = await res.json();
 
     let total = 0;
     let count = 0;
 
     let articleMap = {};
 
-    snapshot.forEach(doc => {
-        const data = doc.data();
+    for(let key in data){
+        const item = data[key];
 
-        const stars = data.stars;
-        const articleId = data.articleId;
+        const stars = item.rating;
+        const articleId = item.article;
 
         total += stars;
         count++;
@@ -73,7 +76,7 @@ async function loadData(){
 
         articleMap[articleId].total += stars;
         articleMap[articleId].count++;
-    });
+    }
 
     // Ortalama
     let avg = count === 0 ? 0 : (total / count).toFixed(2);
@@ -89,7 +92,10 @@ async function loadData(){
     let bestAvg = 0;
 
     for(let id in articleMap){
-        let a = articleMap[id].count === 0 ? 0 : articleMap[id].total / articleMap[id].count;
+        let a = articleMap[id].count === 0
+            ? 0
+            : articleMap[id].total / articleMap[id].count;
+
         if(a > bestAvg){
             bestAvg = a;
             bestId = id;
