@@ -61,7 +61,6 @@ button{
 </div>
 
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -78,21 +77,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.login = async function(){
+window.login = async function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-    const email=document.getElementById("email").value;
-    const password=document.getElementById("password").value;
-
-    try{
-        await signInWithEmailAndPassword(auth,email,password);
-        location.href="admin.html";
-    }catch(e){
-        alert("E-posta veya şifre yanlış.");
-        console.log(e);
-    }
-
-}
-
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    location.href = "admin.html";
+  } catch (e) {
+    alert("E-posta veya şifre yanlış.");
+    console.log(e);
+  }
+};
 </script>
 
 </body>
