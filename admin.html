@@ -79,31 +79,43 @@ async function loadData(){
     const container = document.getElementById("articles");
     container.innerHTML = "";
 
-    let bestId = "";
-    let bestAvg = 0;
+ let sortedArticles = [];
 
-    for(let id in articleMap){
+// 1) array'e çevir
+for(let id in articleMap){
+    sortedArticles.push({
+        id: id,
+        total: articleMap[id].total,
+        count: articleMap[id].count
+    });
+}
 
-        let total = articleMap[id].total;
-        let count = articleMap[id].count;
-        let avg = count === 0 ? 0 : total / count;
+// 2) sırala (yüksek → düşük)
+sortedArticles.sort((a,b) => b.total - a.total);
 
-        const div = document.createElement("div");
-        div.className = "card";
+// 3) ekrana bas
+const container = document.getElementById("articles");
+container.innerHTML = "";
 
-        div.innerHTML = `
-            📄 ${id}<br>
-            📥 Toplam Oy: ${count}<br>
-            ⭐ Toplam Yıldız: ${total}<br>
-            📊 Ortalama: ${avg.toFixed(2)}
-        `;
+sortedArticles.forEach((a, index) => {
 
-        container.appendChild(div);
+    const div = document.createElement("div");
+    div.className = "card";
 
-        if(avg > bestAvg){
-            bestAvg = avg;
-            bestId = id;
-        }
+    div.innerHTML = `
+        <b>#${index+1} ${a.id}</b><br>
+        📥 Toplam Oy: ${a.count}<br>
+        ⭐ Toplam Yıldız: ${a.total}
+    `;
+
+    container.appendChild(div);
+});
+
+// 4) en iyi makale
+const best = sortedArticles[0];
+
+document.getElementById("best").innerText =
+    "🏆 En İyi Makale: " + best.id + " (" + best.total + " ⭐)";
     }
 
     document.getElementById("best").innerText =
