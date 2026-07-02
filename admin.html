@@ -55,28 +55,25 @@ async function loadData(){
     const res = await fetch(RATING_URL);
     const data = await res.json();
 
-    if(!data){
-        document.getElementById("articles").innerHTML = "<div class='card'>Hiç veri yok</div>";
-        return;
-    }
-
     let articleMap = {};
 
-    // 🔥 verileri grupla
-    for(let key in data){
-        const item = data[key];
+    for(let articleId in data){
 
-        if(!item) continue;
+        const users = data[articleId];
 
-        const stars = item.rating || 0;
-        const articleId = item.article || "unknown";
+        for(let userId in users){
 
-        if(!articleMap[articleId]){
-            articleMap[articleId] = {total:0, count:0};
+            const item = users[userId];
+
+            const stars = item.rating || 0;
+
+            if(!articleMap[articleId]){
+                articleMap[articleId] = {total:0, count:0};
+            }
+
+            articleMap[articleId].total += stars;
+            articleMap[articleId].count++;
         }
-
-        articleMap[articleId].total += stars;
-        articleMap[articleId].count++;
     }
 
     const container = document.getElementById("articles");
@@ -85,13 +82,7 @@ async function loadData(){
     let bestId = "";
     let bestAvg = 0;
 
-    // 🔥 SIRALA (en iyi üstte)
-    const sorted = Object.keys(articleMap).sort((a,b)=>{
-        return (articleMap[b].total / articleMap[b].count) -
-               (articleMap[a].total / articleMap[a].count);
-    });
-
-    for(let id of sorted){
+    for(let id in articleMap){
 
         let totalStars = articleMap[id].total;
         let count = articleMap[id].count;
@@ -101,7 +92,7 @@ async function loadData(){
         div.className = "card";
 
         div.innerHTML = `
-            <b>📄 ${id}</b><br>
+            <b>${id}</b><br>
             📥 Toplam Oy: ${count}<br>
             ⭐ Toplam Yıldız: ${totalStars}<br>
             📊 Ortalama: ${avg.toFixed(2)}
