@@ -31,6 +31,7 @@ h2{color:#38bdf8;}
 <div id="articles"></div>
 
 <div class="card" id="best">En İyi Makale: Yükleniyor...</div>
+<div class="card" id="ranking">Sıralama: Yükleniyor...</div>
 
 <script type="module">
 
@@ -89,6 +90,9 @@ async function loadData(){
 
     // 🔥 sırala (total'a göre)
     sortedArticles.sort((a,b) => b.total - a.total);
+    const rankingText = sortedArticles
+    .map(a => `${a.id}(${a.total})`)
+    .join(" > ");
 
     // 🔥 ekrana bas
     const container = document.getElementById("articles");
@@ -115,6 +119,8 @@ async function loadData(){
     if(sortedArticles.length > 0){
         const best = sortedArticles[0];
 
+     document.getElementById("ranking").innerText =
+    "📊 Sıralama: " + rankingText;
         document.getElementById("best").innerText =
             "🏆 En İyi Makale: " + best.id + " (" + best.total + " ⭐)";
     } else {
