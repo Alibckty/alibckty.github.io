@@ -91,8 +91,8 @@ async function loadData(){
     // 🔥 sırala (total'a göre)
     sortedArticles.sort((a,b) => b.total - a.total);
     const rankingText = sortedArticles
-    .map(a => `${a.id}(${a.total}⭐)`)
-    .join(" &nbsp; &gt; &nbsp; ");
+    .map(a => `${a.id}(${a.total})`)
+    .join(" > ");
     // 🔥 ekrana bas
     const container = document.getElementById("articles");
     container.innerHTML = "";
