@@ -76,7 +76,7 @@ async function loadData(){
     });
 
     // Ortalama
-    let avg = (total / count).toFixed(2);
+    let avg = count === 0 ? 0 : (total / count).toFixed(2);
 
     document.getElementById("avg").innerText =
         "Ortalama Puan: " + avg;
