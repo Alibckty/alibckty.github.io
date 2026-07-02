@@ -30,9 +30,9 @@ h2{color:#38bdf8;}
 
 <div id="articles"></div>
 
-<div class="card" id="best">En İyi Makale: Yükleniyor...</div>
 <div class="card" id="ranking">Sıralama: Yükleniyor...</div>
-
+<div class="card" id="best">En İyi Makale: Yükleniyor...</div>
+    
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -118,10 +118,11 @@ async function loadData(){
     if(sortedArticles.length > 0){
         const best = sortedArticles[0];
 
-     document.getElementById("ranking").innerText =
-    "📊 Sıralama: " + rankingText;
+     
         document.getElementById("best").innerText =
             `🏆 En İyi Makale:\n\n${best.id} (${best.total} ⭐)`
+        document.getElementById("ranking").innerText =
+    "📊 Sıralama: " + rankingText;
     } else {
         document.getElementById("best").innerText =
             "🏆 En İyi Makale: Yok";
