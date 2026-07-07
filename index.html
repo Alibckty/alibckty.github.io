@@ -452,12 +452,21 @@ box-shadow:0 0 35px #38bdf8;
 }
 
 .scroll-arrow{
+    display:inline-block;
+    margin-top:35px;
     font-size:55px;
     color:#38bdf8;
+    text-decoration:none;
     animation:float 1.8s infinite;
     text-shadow:0 0 15px #38bdf8;
+    transition:.3s;
+    cursor:pointer;
 }
 
+.scroll-arrow:hover{
+    color:white;
+    transform:scale(1.15);
+}
 @keyframes float{
     0%{transform:translateY(0);}
     50%{transform:translateY(10px);}
@@ -537,7 +546,7 @@ box-shadow:0 0 35px #38bdf8;
 
         <div class="hero-line"></div>
 
-        <div class="scroll-arrow">⌄</div>
+        <a href="#kurucu" class="scroll-arrow">⌄</a>
 
     </div>
 
