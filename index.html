@@ -35,23 +35,58 @@ html{
         background: #111827;
     }
 
-    .hero{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        gap:60px;
-        padding:60px 20px;
-        background:#111827;
-        flex-wrap:wrap;
-    }
+   .hero{
+    position:relative;
+    min-height:90vh;
 
-    .hero-text{
-        text-align:left;
-    }
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at center,#0b2342 0%,#071322 70%,#050b16 100%);
+}
+
+   .hero-text{
+
+text-align:center;
+z-index:10;
+
+}
+.hero p:first-of-type{
+
+font-size:24px;
+color:#d9e6f2;
+margin-top:25px;
+
+}
+
+.hero p:last-of-type{
+
+font-size:18px;
+color:#91a6bf;
+
+}
 .medvortex-logo{
-    width:220px;
-    max-width:100%;
-    margin-bottom:25px;
+
+    width:430px;
+    max-width:90%;
+
+    display:block;
+    margin:auto;
+
+    filter:
+    drop-shadow(0 0 25px rgba(0,170,255,.30))
+    drop-shadow(0 0 60px rgba(0,170,255,.18));
+
+    transition:.4s;
+}
+.medvortex-logo:hover{
+
+transform:scale(1.03);
+
 }
     .founder-card{
     display:flex;
@@ -258,7 +293,39 @@ nav a.active {
 
 .rating.locked span{
     cursor:default;
-}   
+}
+    .subtitle{
+    font-size:24px;
+    color:#ffffff;
+    margin-top:25px;
+}
+
+.description{
+    font-size:18px;
+    color:#94a3b8;
+    max-width:700px;
+    margin:15px auto 0;
+}
+
+.hero-line{
+    width:260px;
+    height:2px;
+    background:#38bdf8;
+    margin:35px auto;
+    box-shadow:0 0 20px #38bdf8;
+}
+
+.scroll-arrow{
+    font-size:40px;
+    color:#38bdf8;
+    animation:float 2s infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(10px);}
+    100%{transform:translateY(0);}
+}
 </style>
 
 </head>
@@ -272,15 +339,23 @@ nav a.active {
 
 <header class="hero" id="anasayfa">
 
+    <div class="hero-overlay"></div>
+
     <div class="hero-text">
 
         <img src="logo.png" class="medvortex-logo" alt="MedVortex Logo">
 
-        <p>A Medical Research & Knowledge Platform</p>
-
-        <p>
-        Advancing Medical Knowledge Through Research & Innovation
+        <p class="subtitle">
+            A Medical Research & Knowledge Platform
         </p>
+
+        <p class="description">
+            Advancing Medical Knowledge Through Research & Innovation
+        </p>
+
+        <div class="hero-line"></div>
+
+        <div class="scroll-arrow">⌄</div>
 
     </div>
 
