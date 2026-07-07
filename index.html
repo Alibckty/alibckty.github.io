@@ -69,30 +69,32 @@ font-size:18px;
 color:#91a6bf;
 
 }
+.logo-box{
+    display:inline-block;
+    padding:25px;
+    border-radius:30px;
+    background:#081B2E;
+    border:1px solid rgba(255,255,255,.05);
+
+    box-shadow:0 0 40px rgba(56,189,248,.15);
+}
+
 .medvortex-logo{
     width:360px;
     max-width:90%;
-
     display:block;
-    margin:auto;
 
-    padding:25px;
-    border-radius:30px;
-    background:#08111f;
+    background:none;
+    padding:0;
+    border-radius:0;
 
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.45),
-        0 0 35px rgba(56,189,248,.12);
-
-    filter:
-        drop-shadow(0 0 20px rgba(56,189,248,.30));
+    filter:drop-shadow(0 0 15px rgba(56,189,248,.25));
 
     transition:.4s;
 }
+
 .medvortex-logo:hover{
-
-transform:scale(1.03);
-
+    transform:scale(1.03);
 }
     .founder-card{
     display:flex;
@@ -349,7 +351,9 @@ nav a.active {
 
     <div class="hero-text">
 
-        <img src="logo.png" class="medvortex-logo" alt="MedVortex Logo">
+       <div class="logo-box">
+    <img src="logo.png" class="medvortex-logo" alt="MedVortex Logo">
+</div>
 
         <p class="subtitle">
             A Medical Research & Knowledge Platform
