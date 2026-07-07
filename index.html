@@ -46,14 +46,14 @@ html{
     overflow:hidden;
 
     background:
-    radial-gradient(circle at center,#0b2342 0%,#071322 70%,#050b16 100%);
+radial-gradient(circle at top,#163a67 0%,#0b2342 35%,#071322 70%,#050b16 100%);
 }
 
-   .hero-text{
+ .hero-text{
+    text-align: center;
+    z-index: 10;
 
-text-align:center;
-z-index:10;
-
+    transform: translateY(-50px);
 }
 .hero p:first-of-type{
 
@@ -78,21 +78,17 @@ color:#91a6bf;
 }
 
 .medvortex-logo{
-    width:430px;
-    max-width:90%;
+    width:650px;
+    max-width:95%;
     display:block;
 
-    background:none;
-    padding:0;
-    border-radius:0;
+    filter:drop-shadow(0 0 40px rgba(56,189,248,.45));
 
-    filter:drop-shadow(0 0 15px rgba(56,189,248,.25));
-
-    transition:.4s;
+    transition:.5s;
 }
 
 .medvortex-logo:hover{
-    transform:scale(1.03);
+    transform:scale(1.05);
 }
     .founder-card{
     display:flex;
@@ -149,13 +145,14 @@ color:#91a6bf;
         color: #94a3b8;
     }
 
-  nav {
+ nav {
     display: flex;
     justify-content: center;
     gap: 20px;
 
-    background: rgba(31, 41, 55, 0.75);
-    backdrop-filter: blur(10px);
+    background: rgba(17,24,39,.55);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
 
     padding: 15px;
     position: sticky;
@@ -300,31 +297,47 @@ nav a.active {
 .rating.locked span{
     cursor:default;
 }
-    .subtitle{
-    font-size:24px;
+   .subtitle{
+
+font-size:34px;
+font-weight:600;
+letter-spacing:.5px;
+
+}
     color:#ffffff;
     margin-top:25px;
 }
 
 .description{
-    font-size:18px;
-    color:#94a3b8;
-    max-width:700px;
+    font-size:22px;
+    color:#b7c8d9;
+    max-width:850px;
     margin:15px auto 0;
+    line-height:1.8;
 }
 
 .hero-line{
-    width:260px;
-    height:2px;
-    background:#38bdf8;
-    margin:35px auto;
-    box-shadow:0 0 20px #38bdf8;
+
+width:380px;
+height:3px;
+
+background:linear-gradient(
+90deg,
+transparent,
+#38bdf8,
+white,
+#38bdf8,
+transparent);
+
+box-shadow:0 0 35px #38bdf8;
+
 }
 
 .scroll-arrow{
-    font-size:40px;
+    font-size:55px;
     color:#38bdf8;
-    animation:float 2s infinite;
+    animation:float 1.8s infinite;
+    text-shadow:0 0 15px #38bdf8;
 }
 
 @keyframes float{
