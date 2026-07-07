@@ -203,6 +203,30 @@ nav a.active {
     border-bottom: 2px solid #38bdf8;
     padding-bottom: 2px;
 }
+.admin-link{
+
+    background:#38bdf8;
+    color:#071322 !important;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    margin-left:25px;
+
+    transition:.3s;
+
+}
+
+.admin-link:hover{
+
+    background:#67d3ff;
+
+    color:#071322;
+
+}
     main{
 
     max-width:900px;
@@ -318,9 +342,24 @@ section:hover{
 }
 
 @media (max-width:768px){
+
     nav{
+
         display:none;
         flex-direction:column;
+
+        align-items:center;
+
+        gap:18px;
+
+        width:100%;
+
+        padding:25px;
+
+        border-radius:0;
+
+        margin:0;
+
     }
 
     nav.active{
@@ -330,6 +369,19 @@ section:hover{
     .menu-toggle{
         display:block;
     }
+
+    .admin-link{
+
+        width:220px;
+
+        text-align:center;
+
+        margin-left:0;
+
+        margin-top:15px;
+
+    }
+
 }
 .rating{
     margin-top:10px;
@@ -480,28 +532,16 @@ box-shadow:0 0 35px #38bdf8;
 <div class="menu-toggle" onclick="toggleMenu()">☰ Menü</div>
 
 <nav id="navMenu">
-    <a href="login.html">
-  <button style="
-    position:fixed;
-    top:20px;
-    right:20px;
-    padding:10px 15px;
-    background:#38bdf8;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-    z-index:9999;
-  ">
-    🔐 Yönetici Girişi
-  </button>
-</a>
+   
     <a href="#anasayfa">Ana Sayfa</a>
     <a href="#kurucu">Kurucu</a>
 <a href="#misyon-vizyon">Vizyon & Misyon</a>
     <a href="#projeler">Projeler</a>
     <a href="#yazilar">Yazılar</a>
     <a href="#iletisim">İletişim</a>
+<a href="login.html" class="admin-link">
+    🔐 Yönetici Girişi
+</a>
 </nav>
 <main>
 
