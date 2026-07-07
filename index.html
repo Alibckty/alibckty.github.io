@@ -464,54 +464,48 @@ box-shadow:0 0 35px #38bdf8;
     100%{transform:translateY(0);}
 }
     /* Mobil görünüm */
+/* Mobil görünüm */
 @media (max-width:768px){
 
 .hero{
-
+    min-height:100vh;
     padding:0 15px;
-
 }
-    .medvortex-logo{
-        width:420px;
-        max-width:100%;
-        margin:0 auto;
-        display:block;
-    }
 
-    .hero-text{
+.medvortex-logo{
+    width:92vw;
+    max-width:520px;
+    margin:0 auto;
+    display:block;
+}
 
-        width:100%;
+.hero-text{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transform:translateY(-20px);
+}
 
-        display:flex;
+.hero-title{
+    font-size:34px;
+    letter-spacing:3px;
+}
 
-        flex-direction:column;
+.hero-subtitle{
+    font-size:13px;
+    letter-spacing:2px;
+}
 
-        align-items:center;
+.hero-line{
+    width:220px;
+}
 
-        justify-content:center;
-
-        text-align:center;
-
-        transform:translateY(-20px);
-
-    }
-
-    .hero-title{
-        font-size:30px;
-        letter-spacing:3px;
-    }
-    .hero-subtitle{
-        font-size:13px;
-        letter-spacing:2px;
-    }
-
-    .hero-line{
-        width:220px;
-    }
-
-    .scroll-arrow{
-        font-size:42px;
-    }
+.scroll-arrow{
+    font-size:42px;
+}
 
 }
 </style>
