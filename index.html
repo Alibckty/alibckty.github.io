@@ -37,7 +37,7 @@ html{
 
    .hero{
     position:relative;
-    min-height:90vh;
+    min-height:82vh;
 
     display:flex;
     justify-content:center;
@@ -74,7 +74,7 @@ pointer-events:none;
     text-align: center;
     z-index: 10;
 
-    transform: translateY(-90px);
+    transform: translateY(-50px);
 }
 .hero p:first-of-type{
 
@@ -166,19 +166,26 @@ color:#91a6bf;
         color: #94a3b8;
     }
 
- nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+nav{
 
-   background: transparent;
-    backdrop-filter: blur(18px);
+    display:flex;
+    justify-content:center;
+    gap:20px;
 
+    position:sticky;
+    top:15px;
 
-    padding: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+    width:fit-content;
+    margin:auto;
+
+    padding:18px 35px;
+
+    border-radius:18px;
+
+    background:rgba(17,24,39,.45);
+    backdrop-filter:blur(18px);
+
+    z-index:999;
 }
 
     nav a {
@@ -199,7 +206,7 @@ nav a.active {
     main{
 
     max-width:900px;
-    margin:-80px auto 40px;
+    margin:-20px auto 40px;
     padding:0 20px;
 
     position:relative;
