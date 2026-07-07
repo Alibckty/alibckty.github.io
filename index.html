@@ -48,7 +48,47 @@ html{
     .hero-text{
         text-align:left;
     }
+.medvortex-logo{
+    width:220px;
+    max-width:100%;
+    margin-bottom:25px;
+}
+    .founder-card{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    margin-bottom:25px;
+}
 
+.founder-photo{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:50% 18%;
+    border:4px solid #38bdf8;
+    box-shadow:0 0 25px rgba(56,189,248,0.3);
+}
+
+.founder-info h3{
+    margin:0;
+    font-size:28px;
+    color:#38bdf8;
+}
+
+.founder-info p{
+    margin:5px 0;
+}
+
+@media(max-width:768px){
+
+    .founder-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+    
     .profile-photo{
         width:220px;
         height:220px;
@@ -231,12 +271,19 @@ nav a.active {
 </div>
 
 <header class="hero" id="anasayfa">
+
     <div class="hero-text">
-      <h1>MedVortex</h1>
-<p>A Medical Research & Knowledge Platform</p>
-<p>Founded by Ali Bocakkıtay</p>
+
+        <img src="logo.png" class="medvortex-logo" alt="MedVortex Logo">
+
+        <p>A Medical Research & Knowledge Platform</p>
+
+        <p>
+        Advancing Medical Knowledge Through Research & Innovation
+        </p>
+
     </div>
-    <img src="profil 2.jpeg" class="profile-photo">
+
 </header>
 
 <div class="menu-toggle" onclick="toggleMenu()">☰ Menü</div>
@@ -268,7 +315,29 @@ nav a.active {
 <main>
 
 <section id="kurucu">
-    <h2>Kurucu Hakkında | About the Founder</h2>
+
+<div class="founder-card">
+
+    <img src="profil 2.jpeg" class="founder-photo">
+
+    <div class="founder-info">
+
+        <h3>Ali Bocakkıtay</h3>
+
+        <p>
+            Founder of MedVortex
+        </p>
+
+        <p>
+            Medical Student & Research Enthusiast
+        </p>
+
+    </div>
+
+</div>
+
+
+<h2>Kurucu Hakkında | About the Founder</h2>
 
     <p>
         Ali Bocakkıtay, Selçuk Üniversitesi Tıp Fakültesi öğrencisi ve MedVortex'in kurucusudur.
