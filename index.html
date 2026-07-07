@@ -32,6 +32,33 @@ html{
 
     background-attachment:fixed;
 }
+    body::before{
+    content:"";
+    position:fixed;
+    top:-220px;
+    left:-180px;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(56,189,248,.10);
+    filter:blur(120px);
+    z-index:-1;
+    pointer-events:none;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    bottom:-220px;
+    right:-180px;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(37,99,235,.08);
+    filter:blur(140px);
+    z-index:-1;
+    pointer-events:none;
+}
     header {
         padding: 60px 20px;
         text-align: center;
