@@ -35,13 +35,16 @@ html{
     body::before{
     content:"";
     position:fixed;
-    top:-220px;
-    left:-180px;
-    width:500px;
-    height:500px;
+    top:-250px;
+    left:-250px;
+    width:700px;
+    height:700px;
     border-radius:50%;
-    background:rgba(56,189,248,.10);
-    filter:blur(120px);
+    background:radial-gradient(circle,
+        rgba(56,189,248,.18) 0%,
+        rgba(56,189,248,.08) 35%,
+        transparent 70%);
+    filter:blur(70px);
     z-index:-1;
     pointer-events:none;
 }
@@ -49,13 +52,16 @@ html{
 body::after{
     content:"";
     position:fixed;
-    bottom:-220px;
-    right:-180px;
-    width:500px;
-    height:500px;
+    bottom:-300px;
+    right:-250px;
+    width:750px;
+    height:750px;
     border-radius:50%;
-    background:rgba(37,99,235,.08);
-    filter:blur(140px);
+    background:radial-gradient(circle,
+        rgba(37,99,235,.16) 0%,
+        rgba(37,99,235,.07) 35%,
+        transparent 70%);
+    filter:blur(80px);
     z-index:-1;
     pointer-events:none;
 }
