@@ -53,7 +53,7 @@ radial-gradient(circle at top,#163a67 0%,#0b2342 35%,#071322 70%,#050b16 100%);
     text-align: center;
     z-index: 10;
 
-    transform: translateY(-50px);
+    transform: translateY(-90px);
 }
 .hero p:first-of-type{
 
@@ -78,7 +78,7 @@ color:#91a6bf;
 }
 
 .medvortex-logo{
-    width:650px;
+    width:720px;
     max-width:95%;
     display:block;
 
@@ -297,23 +297,33 @@ nav a.active {
 .rating.locked span{
     cursor:default;
 }
-   .subtitle{
+  .hero-title{
 
-font-size:34px;
-font-weight:600;
-letter-spacing:.5px;
-
-}
-    color:#ffffff;
     margin-top:25px;
+    margin-bottom:8px;
+
+    font-size:64px;
+    font-weight:800;
+
+    letter-spacing:8px;
+
+    color:white;
+
+    text-shadow:
+    0 0 15px rgba(56,189,248,.35);
+
 }
 
-.description{
+.hero-subtitle{
+
     font-size:22px;
-    color:#b7c8d9;
-    max-width:850px;
-    margin:15px auto 0;
-    line-height:1.8;
+
+    color:#9db2c8;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
 }
 
 .hero-line{
@@ -366,13 +376,11 @@ box-shadow:0 0 35px #38bdf8;
     <img src="logo.png" class="medvortex-logo" alt="MedVortex Logo">
 </div>
 
-        <p class="subtitle">
-            A Medical Research & Knowledge Platform
-        </p>
+       <h1 class="hero-title">MEDVORTEX</h1>
 
-        <p class="description">
-            Advancing Medical Knowledge Through Research & Innovation
-        </p>
+<p class="hero-subtitle">
+    Medical Research Platform
+</p>
 
         <div class="hero-line"></div>
 
