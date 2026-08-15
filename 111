@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<link rel="stylesheet" href="css/style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights | Wionpav Labs</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<!--
+<style>
+
+/* BODY AYNI */
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+color:#e2e8f0;
+
+background:
+radial-gradient(circle at top,#14365f 0%,#0b2342 28%,#071322 55%,#040812 100%);
+}
+
+/* DNA BACKGROUND */
+.science-background {
+position: fixed;
+inset: 0;
+overflow: hidden;
+pointer-events: none;
+z-index: 0;
+}
+
+.dna-line{
+position:absolute;
+width:120px;
+height:520px;
+opacity:0.08;
+background:repeating-linear-gradient(45deg,transparent 0 18px,#38bdf8 19px 21px,transparent 22px 40px);
+border-left:2px solid #38bdf8;
+border-right:2px solid #38bdf8;
+border-radius:50%;
+animation:dnaMove 18s ease-in-out infinite;
+}
+
+.dna-right{ right:12%; top:15%; }
+.dna-left{ left:12%; top:15%; }
+
+/* NAV (3 LÜ SOL ÜST) */
+.menu-toggle{
+position:fixed;
+top:15px;
+left:15px;
+font-size:26px;
+color:#38bdf8;
+cursor:pointer;
+z-index:999;
+}
+
+nav{
+position:fixed;
+top:0;
+left:-100%;
+width:260px;
+height:100vh;
+background:rgba(17,24,39,.95);
+backdrop-filter:blur(25px);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:25px;
+transition:.4s;
+z-index:998;
+}
+
+nav.active{ left:0; }
+
+nav a{
+color:#e2e8f0;
+text-decoration:none;
+font-size:18px;
+}
+
+nav a:hover{ color:#38bdf8; }
+
+/* CONTAINER */
+.container{
+max-width:900px;
+margin:auto;
+padding:100px 20px 60px;
+position:relative;
+z-index:2;
+}
+
+/* DIŞ PREMIUM KUTU */
+.outer-box{
+padding:30px;
+border-radius:22px;
+background:rgba(17,24,39,.72);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.06);
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+/* SENİN ORİJİNAL YAYIN STİLİN */
+.paper-item{
+position:relative;
+overflow:hidden;
+background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(31,41,55,.65));
+border:1px solid rgba(56,189,248,.18);
+border-radius:20px;
+padding:28px;
+margin:25px 0;
+transition:.4s ease;
+box-shadow:0 15px 40px rgba(0,0,0,.28);
+}
+
+.paper-item:hover{
+transform:translateY(-8px);
+border-color:#38bdf8;
+box-shadow:0 25px 60px rgba(56,189,248,.22);
+}
+
+.paper-item a{
+color:white;
+text-decoration:none;
+font-size:20px;
+font-weight:600;
+line-height:1.5;
+}
+
+.paper-item a:hover{ color:#67d3ff; }
+
+/* DOWNLOAD BUTON AYNEN */
+.download-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+margin-top:18px;
+padding:12px 22px;
+background:linear-gradient(135deg,#38bdf8,#67d3ff);
+color:#071322 !important;
+border-radius:14px;
+text-decoration:none;
+font-weight:700;
+box-shadow:0 10px 25px rgba(56,189,248,.25);
+transition:.35s ease;
+}
+
+.download-btn:hover{
+transform:translateY(-5px) scale(1.03);
+box-shadow:0 18px 40px rgba(56,189,248,.45);
+}
+
+/* RATING */
+.rating{
+    margin-top:10px;
+    font-size:28px;
+}
+
+.rating span{
+    cursor:pointer;
+    color:#888;
+    transition:.2s;
+    margin-right:4px;
+}
+
+.rating.locked span{
+cursor:default;
+pointer-events:none;
+}
+.rating span:hover{ color:gold; }
+.rating span.selected{ color:gold; }
+
+footer{
+text-align:center;
+margin-top:50px;
+color:#94a3b8;
+}
+.download-btn{
+  display:inline-block;
+  transition:0.25s;
+}
+
+.download-btn:hover{
+  transform:scale(1.12);
+}
+
+.download-btn:active{
+  transform:scale(1.18);
+}
+</style>
+-->
+
+</head>
+
+<body class="no-interaction-global">
+<div class="science-background">
+    <div class="dna-line dna-right"></div>
+    <div class="dna-line dna-left"></div>
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+</div>
+<div class="science-background">
+<div class="dna-line dna-right"></div>
+<div class="dna-line dna-left"></div>
+</div>
+
+<!-- 🔥 PREMIUM MENU BUTONU -->
+  <button id="menuToggle" class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+<nav id="navMenu">
+    <!-- THEME SWITCHER -->
+<div class="drawer-topbar">
+
+    <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Tema değiştir"
+        aria-pressed="false"
+    >
+        <span class="theme-toggle-icon">☀</span>
+
+        <span class="theme-toggle-text">
+            Light Theme
+        </span>
+    </button>
+
+</div>
+    <button class="menu-close" onclick="closeMenu()">✕</button>
+  <a href="index.html">Ana Sayfa</a>
+<a href="hakkımızda.html">Hakkımızda</a>
+<a href="kurucu.html">Kurucu</a>
+<a href="insights.html">Insights</a>
+<a href="projeler.html">Projeler</a>
+<a href="yayinlar.html">Yayınlar</a>
+<a href="katil.html" class="active">Araştırma Ekibine Katıl</a>
+<a href="index.html#iletisim">İletişim</a>
+    <a href="login.html" class="admin-link">🔐 Yönetici Girişi</a>
+</nav>
+    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+
+<main>
+
+<section>
+
+<!-- 1. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights1-title"
+           href="insights/Bipolar Disorder.pdf"
+           target="_blank">
+
+            📄 1. Bipolar Disorder Read PDF
+
+        </a>
+
+        <button
+            id="insights1-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights1')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights1-download"
+       class="download-btn"
+       href="insights/Bipolar Disorder.pdf"
+       download>
+
+        ⬇️ 1. Bipolar Disorder Download PDF
+
+    </a>
+
+</div>
+
+<!-- 2. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights2-title"
+           href="insights/Schizophrenia.pdf"
+           target="_blank">
+
+            📄 2. Schizophrenia Read PDF
+
+        </a>
+
+        <button
+            id="insights2-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights2')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights2-download"
+       class="download-btn"
+       href="insights/Schizophrenia.pdf"
+       download>
+
+        ⬇️ 2. Schizophrenia Download PDF
+
+    </a>
+
+</div>
+
+
+<!-- 3. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights3-title"
+           href="insights/Capgras Syndrome.pdf"
+           target="_blank">
+
+            📄 3. Capgras Syndrome Read PDF
+
+        </a>
+
+        <button
+            id="insights3-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights3')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights3-download"
+       class="download-btn"
+       href="insights/Capgras Syndrome.pdf"
+       download>
+
+        ⬇️ 3. Capgras Syndrome Download PDF
+
+    </a>
+
+</div>
+    
+<!-- 4. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights4-title"
+           href="insights/Cotard Syndrome.pdf"
+           target="_blank">
+
+            📄 4. Cotard Syndrome Read PDF
+
+        </a>
+
+        <button
+            id="insights4-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights4')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights4-download"
+       class="download-btn"
+       href="insights/Cotard Syndrome.pdf"
+       download>
+
+        ⬇️ 4. Cotard Syndrome Download PDF
+
+    </a>
+
+</div>
+
+        
+<!-- 5. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights5-title"
+           href="insights/Anxiety Disorders.pdf"
+           target="_blank">
+
+            📄 5. Anxiety Disorders Read PDF
+
+        </a>
+
+        <button
+            id="insights5-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights5')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights5-download"
+       class="download-btn"
+       href="insights/Anxiety Disorders.pdf"
+       download>
+
+        ⬇️ 5. Anxiety Disorders Download PDF
+
+    </a>
+
+</div>
+
+
+<!-- 6. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights6-title"
+           href="insights/Dissociative Disorders.pdf"
+           target="_blank">
+
+            📄 6. Dissociative Disorders Read PDF
+
+        </a>
+
+        <button
+            id="insights6-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights6')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights6-download"
+       class="download-btn"
+       href="insights/Dissociative Disorders.pdf"
+       download>
+
+        ⬇️ 6. Dissociative Disorders Download PDF
+
+    </a>
+
+</div>
+
+
+<!-- 7. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights7-title"
+           href="insights/Depression (Depressive Disorder).pdf"
+           target="_blank">
+
+            📄 7. Depression (Depressive Disorder) Read PDF
+
+        </a>
+
+        <button
+            id="insights7-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights7')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights7-download"
+       class="download-btn"
+       href="insights/Depression (Depressive Disorder).pdf"
+       download>
+
+        ⬇️ 7. Depression (Depressive Disorder) Download PDF
+
+    </a>
+
+</div>
+
+<!-- 8. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights8-title"
+           href="insights/Fregoli Syndrome.pdf"
+           target="_blank">
+
+            📄 8. Fregoli Syndrome Read PDF
+
+        </a>
+
+        <button
+            id="insights8-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights8')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights8-download"
+       class="download-btn"
+       href="insights/Fregoli Syndrome.pdf"
+       download>
+
+        ⬇️ 8. Fregoli Syndrome Download PDF
+
+    </a>
+
+</div>
+
+
+
+<!-- 9. Insights (BİREBİR) -->
+
+
+
+<div class="paper-item">
+
+    <div class="paper-header">
+
+        <a id="insights9-title"
+           href="insights/Obsessive-Compulsive Disorder (OCD).pdf"
+           target="_blank">
+
+            📄 9. Obsessive-Compulsive Disorder (OCD) Read PDF
+
+        </a>
+
+        <button
+            id="insights9-lang"
+            class="lang-switch"
+            onclick="toggleLanguage('insights9')">
+
+            🇬🇧
+
+        </button>
+
+    </div>
+
+    <a id="insights9-download"
+       class="download-btn"
+       href="insights/Obsessive-Compulsive Disorder (OCD).pdf"
+       download>
+
+        ⬇️ 9. Obsessive-Compulsive Disorder (OCD) Download PDF
+
+    </a>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+© 2026 Wionpav Labs | Medical Research & Knowledge Platform | Content licensed under CC BY-NC 4.0
+</footer>
+
+
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
